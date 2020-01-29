@@ -43,7 +43,8 @@ export class Game extends Phaser.Game {
 
     this.scene.start('Boot');
 
-    StatusBar.hide();
+    StatusBar.hide()
+      .catch(console.log);
     SplashScreen.hide();
 
   }

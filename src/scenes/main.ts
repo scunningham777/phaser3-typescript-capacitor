@@ -3,7 +3,7 @@ import { WORLD_WIDTH, WORLD_HEIGHT } from '../constants';
 
 export class MainScene extends Phaser.Scene {
 
-	private player;
+	private player: Player;
 	private platforms;
 
 	create(): void {
@@ -23,7 +23,8 @@ export class MainScene extends Phaser.Scene {
 
 		this.platforms = this.physics.add.staticGroup();
 
-		this.platforms.create(WORLD_WIDTH / 2, WORLD_HEIGHT, 'ground');
+		const scaleX = WORLD_WIDTH / 400;
+		this.platforms.create(WORLD_WIDTH / 2, WORLD_HEIGHT, 'ground').setScale(scaleX, 1).refreshBody();
 		this.physics.add.collider(this.player.entity, this.platforms, null, null, this);
 
 	}

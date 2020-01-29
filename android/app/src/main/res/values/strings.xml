@@ -1,0 +1,7 @@
+<?xml version='1.0' encoding='utf-8'?>
+<resources>
+    <string name="app_name">phaser3-typescript</string>
+    <string name="title_activity_main">phaser3-typescript</string>
+    <string name="package_name">com.urtropedesigns.phaser3typescript</string>
+    <string name="custom_url_scheme">com.urtropedesigns.phaser3typescript</string>
+</resources>

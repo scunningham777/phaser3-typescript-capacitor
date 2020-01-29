@@ -1,0 +1,8 @@
+{
+  "appId": "com.urtropedesigns.phaser3typescript",
+  "appName": "phaser3-typescript",
+  "bundledWebRuntime": false,
+  "npmClient": "npm",
+  "webDir": "www",
+  "cordova": {}
+}
