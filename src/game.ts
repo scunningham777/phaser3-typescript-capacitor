@@ -1,4 +1,4 @@
-/// <reference path="./phaser.d.ts"/>
+/// <reference path="../node_modules/phaser/types/phaser.d.ts"/>
 
 import 'phaser';
 import { BootScene } from './scenes/boot';
@@ -9,11 +9,16 @@ import { GameOverScene } from './scenes/game-over';
 
 import { WORLD_WIDTH, WORLD_HEIGHT } from './constants';
 
-import { Plugins } from '@capacitor/core';
+import { SplashScreen } from '@capacitor/splash-screen';
+import { StatusBar } from '@capacitor/status-bar';
+import { Capacitor } from '@capacitor/core';
 
-const config: GameConfig = {
+const config: Phaser.Types.Core.GameConfig = {
     width: WORLD_WIDTH,
     height: WORLD_HEIGHT,
+    // scale: {
+    //     mode: Phaser.Scale.FIT
+    // },
     type: Phaser.AUTO,
     parent: 'game',
     backgroundColor: '#93e7ff',
@@ -27,13 +32,12 @@ const config: GameConfig = {
     }
 };
 
-const { StatusBar, SplashScreen } = Plugins;
 
 export class Game extends Phaser.Game {
 
-    constructor(GameConfig: config) {
+    constructor(gameConfig: Phaser.Types.Core.GameConfig) {
 
-        super(config);
+        super(gameConfig);
 
         this.scene.add('Boot', BootScene, false);
         this.scene.add('Preload', PreloadScene, false);
@@ -43,9 +47,11 @@ export class Game extends Phaser.Game {
 
         this.scene.start('Boot');
 
-        StatusBar.hide()
-            .catch(console.log);
-        SplashScreen.hide();
+        if (Capacitor.isNativePlatform()) {
+            StatusBar.hide()
+               .catch(console.log);
+            SplashScreen.hide();
+        }
 
     }
 
