@@ -3,14 +3,19 @@ var pathToPhaser = path.join(__dirname, '/node_modules/phaser/');
 var phaser = path.join(pathToPhaser, 'dist/phaser.js');
 
 module.exports = {
+  mode: 'production',
   entry: './src/game.ts',
   output: {
     filename: 'bundle.js',
     path: path.resolve(__dirname, 'www/build')
   },
   devServer: {
-    contentBase: path.resolve(__dirname, './www'),
-    publicPath: '/build/',
+    static: {
+      directory: path.resolve(__dirname, './www'),
+    },
+    devMiddleware: {
+      publicPath: '/build/',
+    },
     host: '0.0.0.0',
     port: 8080,
     open: true
@@ -20,6 +25,10 @@ module.exports = {
     alias: {
       phaser: phaser
     }
+  },
+  performance: {
+    maxEntrypointSize: 1500000,
+    maxAssetSize: 1500000,
   },
   module: {
     rules: [
